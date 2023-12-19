@@ -6,7 +6,9 @@ function Navbar()
     return(
 
      <div>
-        <h2> Top Courses</h2>   
+       <nav>
+       <h2> Top Courses</h2>
+       </nav>   
      </div>
     )
     

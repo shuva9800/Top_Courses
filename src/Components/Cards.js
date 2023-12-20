@@ -33,13 +33,14 @@ function Cards({apidata, catagory}){
         
   //for Development card
   else{
+  
     return apidata[catagory]
   }
         
     }
 
     return(
-        <div>
+        <div className="flex flex-wrap justify-center gap-4 mb-4">
             {getcourseData().map((course)=>{
                 return(<Card key={course.id} course={course}></Card>)
             }

@@ -19,9 +19,7 @@ const App = () => {
   setLoading(true);
   try{
     
-    let data =await fetch(apiUrl
-      
-      );
+    let data =await fetch(apiUrl);
     let value=await data.json();
     setData(value.data)
     // console.log(value.data)
@@ -40,16 +38,17 @@ const App = () => {
 
   
   return (
-   <div>
-      <div>
+   <div className="min-h-screen flex flex-col bg-bgDark2">
+      <div >
       <Navbar/>
       </div>
       
-      <div>
+      <di  className="bg-bgDark2">
       <Filter  items={filterData} catagory={catagory} setCatagory={setCatagory}/>
-      </div>
+      </di>
       
-      <div>
+      <div className="w-11/12 max-w-[1200px] 
+        mx-auto flex flex-wrap justify-center items-center min-h-[50vh]">
           {loading? <Loader />: <Cards apidata={apidata} catagory={catagory}/>}
       </div>
    </div>

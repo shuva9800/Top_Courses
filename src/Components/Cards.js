@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from"./Card";
 
 function Cards({apidata, catagory}){
+    const [likedCourses, setLikedCourses] = useState([]);
+
    
   function getcourseData(){
         let coursedata=[];
@@ -42,7 +44,9 @@ function Cards({apidata, catagory}){
     return(
         <div className="flex flex-wrap justify-center gap-4 mb-4">
             {getcourseData().map((course)=>{
-                return(<Card key={course.id} course={course}></Card>)
+                return(<Card key={course.id} course={course}  
+                 likedCourses={likedCourses}
+                 setLikedCourses={setLikedCourses}/>)
             }
                 
             )}

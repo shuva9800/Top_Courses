@@ -5,19 +5,27 @@ import { toast } from 'react-toastify';
 import {FcLike,FcLikePlaceholder} from "react-icons/fc"
 // import { FaBeer } from "react-icons/fa";
 
-export const Card = ({course}) => {
+export const Card = ({course,setLikedCourses,likedCourses}) => {
  
-    const[value,setValue]=useState(false)
     function changeHandeler(){
-        if(value===false){
-            setValue(true);
-            toast("Add To Fevourite List...")
-            console.log(value);
+      
+          //logic
+          if(likedCourses.includes(course.id)) {
+            //pehle se like hua pada tha
+            setLikedCourses( (prev) => prev.filter((cid)=> (cid !== course.id) )  );
+            toast.warning("like removed");
         }
-        else{
-            setValue(false);
-            toast("Remove From Fevourite List...")
-            console.log(value);
+        else {
+            //pehle se like nahi hai ye course
+            //insert karna h ye course liked courses me 
+            if(likedCourses.length === 0 ) {
+                setLikedCourses([course.id]);
+            }
+            else {
+                //non-empty pehle se
+                setLikedCourses((prev) => [...prev, course.id]);
+            }
+            toast.success("Liked Successfully");
         }
 
     }
@@ -30,7 +38,7 @@ export const Card = ({course}) => {
             grid place-items-center'>
             <button onClick={changeHandeler}>
             {
-                value?(<FcLike fontSize="1.75rem" />):( <FcLikePlaceholder fontSize="1.75rem" />)
+                likedCourses.includes(course.id) ? (<FcLike fontSize="1.75rem" />):( <FcLikePlaceholder fontSize="1.75rem" />)
             }
                
             </button>
